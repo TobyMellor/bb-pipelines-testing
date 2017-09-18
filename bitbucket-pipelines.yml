@@ -3,7 +3,4 @@ pipelines:
   default:
     - step:
         script:
-          - apt-get update
-          - apt-get -qq install git-ftp
-          - echo "TESTING > ftp://$FTP_SERVER_ADDRESS/var/www/html"
-          - git ftp init --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp://138.68.185.55/var/www/html
+          - ssh $FTP_USERNAME@$FTP_SERVER_ADDRESS 'cd /var/www/html; git pull origin master'
